@@ -1,17 +1,30 @@
 <h3>Login</h3>
 
-<div>
-  <form action="">
-    <label for="username">Username</label>
-    <input type="text" name="username" placeholder="Your username..">
 
+<div>
+  <form  [formGroup]="loginFormGroup" (ngSubmit)="handleLogin()">
+    <p class="field field-icon">
+    <label for="username">Username</label>
+    <input formControlName="username" type="text" name="username" id="username" placeholder="Your username..">
+  </p>
+  
+   <!-- <ng-container *ngIf="loginFormGroup.controls['email']?.errors")>
+  
+  </ng-container>  -->
+  <!-- <p *ngIf="loginFormGroup.controls['username'].errors" class="error">
+    Username is required!
+</p>
+
+<p class="error">
+    Username is not valid!
+</p> -->
+  <p class="field field-icon">
     <label for="Password">Password</label>
-    <input type="password" name="password" placeholder="Password...">
-    <label for="rePass">Confirm Password</label>
-    <input type="password" name="rePass" placeholder="Password...">
+    <input formControlName="password" type="password" name="password" id="password" placeholder="Password...">
+  </p>
    
   
     <input type="submit" value="Login">
-    <a routerLink="/register">Create an account?</a>
+    <a routerLink="/login">Login?</a>
   </form>
 </div>

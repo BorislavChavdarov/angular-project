@@ -6,8 +6,6 @@ import { AboutUsComponent } from './shared/about-us/about-us.component';
 import { HomeComponent } from "./shared/home/home.component"
 const routes: Routes = [
   {path:"home", component: HomeComponent},
-  {path:"login", component: LoginComponent},
-  {path:"register", component: RegisterComponent},
   {path:"about-us", component: AboutUsComponent},
 ];
 

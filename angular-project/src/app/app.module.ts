@@ -9,6 +9,8 @@ import { HomeComponent } from './shared/home/home.component';
 import { LoginComponent } from './auth/login/login.component';
 import { RegisterComponent } from './auth/register/register.component';
 import { AboutUsComponent } from './shared/about-us/about-us.component';
+import { AuthModule } from './auth/auth.module';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -16,13 +18,14 @@ import { AboutUsComponent } from './shared/about-us/about-us.component';
     HeaderComponent,
     FooterComponent,
     HomeComponent,
-    LoginComponent,
-    RegisterComponent,
-    AboutUsComponent
+    AboutUsComponent,
+    
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    AuthModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
