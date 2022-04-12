@@ -5,27 +5,28 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './core/header/header.component';
 import { FooterComponent } from './core/footer/footer.component';
-import { HomeComponent } from './shared/home/home.component';
-import { LoginComponent } from './auth/login/login.component';
-import { RegisterComponent } from './auth/register/register.component';
-import { AboutUsComponent } from './shared/about-us/about-us.component';
 import { AuthModule } from './auth/auth.module';
 import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+ import { CarsModule } from './feature/cars/cars.module';
+import { PagesModule } from './feature/pages/pages.module';
+
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
     FooterComponent,
-    HomeComponent,
-    AboutUsComponent,
     
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     AuthModule,
-    FormsModule
+    CarsModule,
+    PagesModule,
+    FormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

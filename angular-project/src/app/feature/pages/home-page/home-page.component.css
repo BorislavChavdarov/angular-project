@@ -1,0 +1,18 @@
+div{
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    /* bring your own prefixes */
+    transform: translate(-50%, -50%);
+    color: white;
+}
+a{
+    color: white;
+}
+body{
+    background-image: url("https://wallpaperbat.com/img/567976-download-2560x1440-wallpaper-bmw-m8-gte-sports-car-front-dual-wide-widescreen-169-widescreen-2560x1440-hd-image-background-1759.jpg");
+}
+img{
+    width: 100%;
+    height: 100%;
+}

@@ -1,0 +1,10 @@
+
+.card-coulums{
+    width: 70%;
+    margin-inline: auto;
+    margin-block: 30px;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
