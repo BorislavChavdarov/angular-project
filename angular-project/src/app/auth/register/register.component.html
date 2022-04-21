@@ -1,16 +1,43 @@
 <h3>Register</h3>
-<div>
-  <form>
-    <label for="username">Username</label>
-    <input type="text" name="username" placeholder="Your username..">
 
-    <label for="Password">Password</label>
-    <input type="password" name="password" placeholder="Password...">
-    <label for="rePass">Confirm Password</label>
-    <input type="password" name="rePass" placeholder="Password...">
-   
+
+<div>
+  <form  [formGroup]="registerFormGroup" (ngSubmit)="handleRegister()">
+    <p class="field field-icon">
+    <label for="username">Username</label>
+    <input formControlName="username" type="text" name="username" id="username" placeholder="Your username..">
+  </p>
   
-    <button>Submit</button>
-    <a routerLink="/register">Create an account?</a>
+   <ng-container *ngIf="registerFormGroup.controls['username'].touched && registerFormGroup.controls['username'].invalid">
+    <p *ngIf="registerFormGroup.controls['username'].errors!['required']" class="alert alert-danger">
+      Username is required!
+  </p>
+  
+  <p  *ngIf="registerFormGroup.controls['username'].errors!['minlength'] || registerFormGroup.controls['username'].errors!['maxlength']" class="alert alert-danger">
+      Username must be between 3 and 20 characters long!
+  </p>
+  
+  </ng-container> 
+  
+  <p class="field field-icon">
+    <label for="Password">Password</label>
+    <input formControlName="password" type="password" name="password" id="password" placeholder="Password...">
+  </p>
+  <ng-container *ngIf="registerFormGroup.controls['password'].touched && registerFormGroup.controls['password'].invalid">
+    <p *ngIf="registerFormGroup.controls['password'].errors!['required']" class="alert alert-danger">
+      Password is required!
+  </p>
+  
+  <p  *ngIf="registerFormGroup.controls['password'].errors!['minlength'] " class="alert alert-danger">
+      Password must be at least 4 characters long!
+  </p>
+  
+  </ng-container> 
+  <p class="field field-icon">
+    <label for="RePassword">Repeat Password</label>
+    <input formControlName="rePassword" type="password" name="rePassword" id="rePassword" placeholder="Repeat password">
+  </p>
+    <input type="submit" value="Login">
+    <a routerLink="/login">Login?</a>
   </form>
 </div>

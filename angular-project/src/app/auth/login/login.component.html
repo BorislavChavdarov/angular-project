@@ -8,23 +8,33 @@
     <input formControlName="username" type="text" name="username" id="username" placeholder="Your username..">
   </p>
   
-   <!-- <ng-container *ngIf="loginFormGroup.controls['email']?.errors")>
+   <ng-container *ngIf="loginFormGroup.controls['username'].touched && loginFormGroup.controls['username'].invalid">
+    <p *ngIf="loginFormGroup.controls['username'].errors!['required']" class="alert alert-danger">
+      Username is required!
+  </p>
   
-  </ng-container>  -->
-  <!-- <p *ngIf="loginFormGroup.controls['username'].errors" class="error">
-    Username is required!
-</p>
-
-<p class="error">
-    Username is not valid!
-</p> -->
+  <p  *ngIf="loginFormGroup.controls['username'].errors!['minlength'] || loginFormGroup.controls['username'].errors!['maxlength']" class="alert alert-danger">
+      Username must be between 3 and 20 characters long!
+  </p>
+  
+  </ng-container> 
+  
   <p class="field field-icon">
     <label for="Password">Password</label>
     <input formControlName="password" type="password" name="password" id="password" placeholder="Password...">
   </p>
-   
+  <ng-container *ngIf="loginFormGroup.controls['password'].touched && loginFormGroup.controls['password'].invalid">
+    <p *ngIf="loginFormGroup.controls['password'].errors!['required']" class="alert alert-danger">
+      Password is required!
+  </p>
+  
+  <p  *ngIf="loginFormGroup.controls['password'].errors!['minlength'] " class="alert alert-danger">
+      Password must be at least 4 characters long!
+  </p>
+  
+  </ng-container> 
   
     <input type="submit" value="Login">
-    <a routerLink="/login">Login?</a>
+    <a routerLink="/register">Register?</a>
   </form>
 </div>
