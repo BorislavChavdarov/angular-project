@@ -11,6 +11,6 @@ export class CarService {
   constructor(private http:HttpClient) { }
 
   loadCarList(): Observable<ICar[]>{
-    return this.http.get<ICar[]>(`${environment.apiUrl}/cars`)
+    return this.http.get<ICar[]>(`${environment.apiUrl}data/cars`)
   }
 }

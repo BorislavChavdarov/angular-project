@@ -1,5 +1,8 @@
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms'
+import { passwordMatch } from '../util';
+import { AuthService } from "../../auth.service"
+import { CreateUserDto } from 'src/app/core/user.service';
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -7,21 +10,38 @@ import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms'
 })
 export class RegisterComponent implements OnInit {
   //TODO: boby4a - make validation for repass
+  passwordControl = new FormControl(null, [Validators.required, Validators.minLength(4)]);
+
+  get passwordsGroup(): FormGroup {
+    return this.registerFormGroup.controls['passwords'] as FormGroup;
+  }
+
   registerFormGroup: FormGroup = this.formBuilder.group({
-    username: new FormControl(null, [Validators.required, Validators.minLength(3), Validators.maxLength(20)]),
-    password: new FormControl(null, [Validators.required, Validators.minLength(4)]),
-    rePassword: new FormControl(null, []),
+    email: new FormControl(null, [Validators.required, Validators.email]),
+    passwords: new FormGroup({
+      password: this.passwordControl,
+      rePassword: new FormControl(null, [passwordMatch(this.passwordControl)]),
+    })
+    
   });
-  constructor(   private formBuilder: FormBuilder) { }
+  constructor(   private formBuilder: FormBuilder, private authService: AuthService) { }
   ngOnInit(): void {
   }
   handleRegister(): void {
+ 
     if (this.registerFormGroup.valid) {
+      const { email, passwords } = this.registerFormGroup.value;
+      const body: CreateUserDto = {  
+        email: email,
+        password: passwords.password
+      }
       console.log(this.registerFormGroup.value); 
-    } 
-    // else {
-    //   console.log("This form is invalid!!!")
-    // }
+      this.authService.register(body)
+      .subscribe((data) => {
+console.log(data)
+    })
+    
     
   }
+}
 }
