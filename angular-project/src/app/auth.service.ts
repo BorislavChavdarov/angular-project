@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, tap } from 'rxjs';
+import { BehaviorSubject, Observable, of, Subject, tap } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { IUser } from './core/interfaces/user';
 
@@ -8,7 +8,12 @@ import { IUser } from './core/interfaces/user';
   providedIn: 'root'
 })
 export class AuthService {
-
+  private loggedIn = false;
+  private logger = new BehaviorSubject<boolean>(false);
+ 
+  isLoggedIn(): Observable<boolean> {
+    return this.logger.asObservable();
+  }
   constructor(private httpClient: HttpClient) { }
 
 
@@ -17,7 +22,10 @@ export class AuthService {
     .post<IUser>(`${environment.apiUrl}/users/login`, userData, {})
     .pipe(tap(res => {
       const user = JSON.stringify(res);
+      
       localStorage.setItem("currentUser", user)
+      this.loggedIn = true;
+    this.logger.next(this.loggedIn);
     }))
     
   }
@@ -30,9 +38,7 @@ export class AuthService {
     }))
     
   }
-  isLoggedIn():boolean | any {
-        console.log("ISLOGGEDIN")
-  }
+  
 //   register- {
 //     "email": "asd@email.com",
 //     "password": "asd123",
