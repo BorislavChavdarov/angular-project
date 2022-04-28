@@ -1,5 +1,6 @@
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms'
+import { Router } from '@angular/router';
 import { AuthService } from 'src/app/auth.service';
 import { CreateUserDto } from 'src/app/core/user.service';
 @Component({
@@ -13,7 +14,7 @@ export class LoginComponent implements OnInit {
     email: new FormControl(null, [Validators.required, Validators.email]),
     password: new FormControl(null, [Validators.required, Validators.minLength(4)])
   });
-  constructor(   private formBuilder: FormBuilder, private authService: AuthService) { }
+  constructor(   private formBuilder: FormBuilder, private authService: AuthService, private router: Router) { }
 
   ngOnInit(): void {
   }
@@ -31,7 +32,7 @@ export class LoginComponent implements OnInit {
       console.log(this.loginFormGroup.value); 
       this.authService.login(body)
       .subscribe((data) => {
-console.log(data)
+        this.router.navigate(['/home']);
     })
     
     

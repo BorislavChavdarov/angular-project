@@ -1,0 +1,111 @@
+<h3>Add Car</h3>
+
+
+<div>
+  <form  [formGroup]="addCarFormGroup" (ngSubmit)="submitNewCar()">
+      <ng-container>
+    <p class="field field-icon">
+    <label for="make">Make</label>
+    <input formControlName="make" type="text" name="make" id="make" placeholder="Car make...">
+  </p>
+   <ng-container *ngIf="addCarFormGroup.controls['make'].touched && addCarFormGroup.controls['make'].invalid">
+    <p *ngIf="addCarFormGroup.controls['make'].errors!['required']" class="alert alert-danger">
+        make is required!
+  </p>
+  
+  <p  *ngIf="addCarFormGroup.controls['make'].errors!['minlength'] " class="alert alert-danger">
+    Car make must be atleast 3 chracters long!
+  </p>
+  
+  </ng-container> 
+</ng-container>
+<ng-container>
+    <p class="field field-icon">
+    <label for="model">Make</label>
+    <input formControlName="model" type="text" name="model" id="model" placeholder="Car model...">
+  </p>
+   <ng-container *ngIf="addCarFormGroup.controls['model'].touched && addCarFormGroup.controls['model'].invalid">
+    <p *ngIf="addCarFormGroup.controls['model'].errors!['required']" class="alert alert-danger">
+        Model is required!
+  </p>
+  
+  <p  *ngIf="addCarFormGroup.controls['model'].errors!['minlength'] " class="alert alert-danger">
+    Car make must be atleast 3 chracters long!
+  </p>
+  
+  </ng-container> 
+</ng-container>
+<ng-container>
+    <p class="field field-icon">
+    <label for="imgUrl">Image Url</label>
+    <input formControlName="imgUrl" type="text" name="imgUrl" id="imgUrl" placeholder="Car imgUrl...">
+  </p>
+   <ng-container *ngIf="addCarFormGroup.controls['imgUrl'].touched && addCarFormGroup.controls['imgUrl'].invalid">
+    <p *ngIf="addCarFormGroup.controls['imgUrl'].errors!['required']" class="alert alert-danger">
+        imgUrl is required!
+  </p>
+  
+  <p  *ngIf="addCarFormGroup.controls['imgUrl'].errors!['pattern'] " class="alert alert-danger">
+    The image url is not valid!
+  </p>
+  
+  </ng-container> 
+</ng-container>
+<ng-container>
+    <p class="field field-icon">
+    <label for="price">Price</label>
+    <input formControlName="price" type="number" min="0" name="price" id="price" placeholder="Car price...">
+  </p>
+   <ng-container *ngIf="addCarFormGroup.controls['price'].touched && addCarFormGroup.controls['price'].invalid">
+    <p *ngIf="addCarFormGroup.controls['price'].errors!['required']" class="alert alert-danger">
+        Price is required!
+  </p>
+  
+  
+  
+  </ng-container> 
+</ng-container>
+<ng-container>
+    <p class="field field-icon">
+    <label for="year">Year</label>
+    <input formControlName="year" type="number" min="0" name="year" id="year" placeholder="Car year of production...">
+  </p>
+   <ng-container *ngIf="addCarFormGroup.controls['year'].touched && addCarFormGroup.controls['year'].invalid">
+    <p *ngIf="addCarFormGroup.controls['year'].errors!['required']" class="alert alert-danger">
+        Year is required!
+  </p>
+  
+  </ng-container> 
+</ng-container>
+<ng-container>
+    <p class="field field-icon">
+    <label for="hp">Horsepower</label>
+    <input formControlName="hp" type="number" min="0" name="hp" id="hp" placeholder="Car horsepower...">
+  </p>
+   <ng-container *ngIf="addCarFormGroup.controls['hp'].touched && addCarFormGroup.controls['hp'].invalid">
+    <p *ngIf="addCarFormGroup.controls['hp'].errors!['required']" class="alert alert-danger">
+        Horsepower is required!
+  </p>
+
+  </ng-container> 
+</ng-container>
+<ng-container>
+    <p class="field field-icon">
+    <label for="description">Short description</label>
+    <input formControlName="description" type="text" name="description" id="description" placeholder="Car description...">
+  </p>
+   <ng-container *ngIf="addCarFormGroup.controls['description'].touched && addCarFormGroup.controls['description'].invalid">
+    <p *ngIf="addCarFormGroup.controls['description'].errors!['required']" class="alert alert-danger">
+        Description is required!
+  </p>
+  
+  <p  *ngIf="addCarFormGroup.controls['description'].errors!['minlength'] " class="alert alert-danger">
+    Car description must be atleast 3 chracters long!
+  </p>
+  
+  </ng-container> 
+</ng-container>
+
+<input type="submit" value="Add Car">
+  </form>
+</div>

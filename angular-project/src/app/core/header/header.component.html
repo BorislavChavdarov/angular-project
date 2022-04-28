@@ -1,10 +1,18 @@
 <div class="topnav">
   <a class="active" routerLink="home">Home</a>
   <a routerLink="cars">Cars</a>
+
   <!-- <a href="#contact">Contact</a> -->
   <a routerLink="about-us">About</a>
-<a class="f-right">{{isLoggedIn | async}}</a>
-  <a class="f-right" routerLink="login">Login</a>
-  <a class="f-right" routerLink="register">Register</a>
-  <a class="f-right">Logout</a>
+
+  <ng-container *ngIf="isLoggedIn | async">
+    <a class="f-left" routerLink="add-car">Add car</a>
+    <a class="f-right" href="javascript:void(0);" (click)="logoutHandler()" >Logout</a>
+  </ng-container>
+  <ng-container *ngIf="!(isLoggedIn | async)">
+    <a class="f-right" routerLink="login">Login</a>
+    <a class="f-right" routerLink="register">Register</a>
+  </ng-container>
+  
+  
 </div>

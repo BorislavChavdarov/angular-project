@@ -18,4 +18,18 @@ export class CarService {
   loadCarList(): Observable<ICar[]>{
     return this.http.get<ICar[]>(`${environment.apiUrl}/data/cars`)
   }
+
+  postCar(car: {description: string
+    hp: number
+    imgUrl: string
+    make: string
+    model: string
+    price: number
+    year: number}): Observable<ICar>{
+      const user = JSON.parse(localStorage.getItem("currentUser")!);
+      const userId = user._id
+      console.log(user)
+    return this.http.post<ICar>(`${environment.apiUrl}/data/cars`, JSON.stringify({...car,  creator:userId}), {headers: {'content-type': 'application/json',
+    "X-Authorization": user.accessToken}})
+  }
 }

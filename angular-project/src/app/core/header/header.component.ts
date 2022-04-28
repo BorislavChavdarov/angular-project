@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Observable, tap } from 'rxjs';
 import { AuthService } from 'src/app/auth.service';
 
@@ -9,7 +10,7 @@ import { AuthService } from 'src/app/auth.service';
 })
 export class HeaderComponent implements OnInit {
   isLoggedIn: Observable<boolean> = this.authService.isLoggedIn();
-  constructor(private authService: AuthService, ) { }
+  constructor(private authService: AuthService, private router: Router) { }
   
   ngOnInit(): void {
  this.isLoggedIn.subscribe(
@@ -17,5 +18,11 @@ export class HeaderComponent implements OnInit {
   
 );
   }
+  logoutHandler():void {
+    this.authService.logout().subscribe((res) => {
+      this.router.navigate(['/home']);
+      }
+    );
+  } 
 
 }

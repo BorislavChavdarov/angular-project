@@ -3,13 +3,14 @@ import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms'
 import { passwordMatch } from '../util';
 import { AuthService } from "../../auth.service"
 import { CreateUserDto } from 'src/app/core/user.service';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent implements OnInit {
-  //TODO: boby4a - make validation for repass
+
   passwordControl = new FormControl(null, [Validators.required, Validators.minLength(4)]);
 
   get passwordsGroup(): FormGroup {
@@ -24,7 +25,7 @@ export class RegisterComponent implements OnInit {
     })
     
   });
-  constructor(   private formBuilder: FormBuilder, private authService: AuthService) { }
+  constructor(   private formBuilder: FormBuilder, private authService: AuthService, private router: Router) { }
   ngOnInit(): void {
   }
   handleRegister(): void {
@@ -38,7 +39,7 @@ export class RegisterComponent implements OnInit {
       console.log(this.registerFormGroup.value); 
       this.authService.register(body)
       .subscribe((data) => {
-console.log(data)
+        this.router.navigate(['/home']);
     })
     
     

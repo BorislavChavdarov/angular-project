@@ -9,7 +9,7 @@ import { IUser } from './core/interfaces/user';
 })
 export class AuthService {
   private loggedIn = false;
-  private logger = new BehaviorSubject<boolean>(false);
+  private logger = new BehaviorSubject<boolean>(Boolean(localStorage.getItem("currentUser")));
  
   isLoggedIn(): Observable<boolean> {
     return this.logger.asObservable();
@@ -35,8 +35,21 @@ export class AuthService {
     .pipe(tap(res => {
       const user = JSON.stringify(res);
       localStorage.setItem("currentUser", user)
+      this.loggedIn = true;
+    this.logger.next(this.loggedIn);
     }))
     
+  }
+  logout(): Observable<any> {
+    const user = JSON.parse(localStorage.getItem("currentUser")!);
+    return this.httpClient.get<any>(`${environment.apiUrl}/users/logout`, {headers: {'content-type': 'application/json',
+    "X-Authorization": user.accessToken}})
+    .pipe(tap(res => {
+      
+      localStorage.removeItem("currentUser")
+      this.loggedIn = false;
+    this.logger.next(this.loggedIn);
+    }))
   }
   
 //   register- {
