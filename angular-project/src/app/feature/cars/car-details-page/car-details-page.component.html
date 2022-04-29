@@ -1,0 +1,36 @@
+<section id="team-home">
+    <article class="layout">
+        <img [src]="car.imgUrl" class="team-logo left-col">
+        <div class="tm-preview">
+            <h2>{{car.make}} {{car.model}}</h2>
+            <p>Price: {{car.price}}$</p>
+            <p>Year: {{car.year}}</p>
+            <p>Horsepower: {{car.hp}}hp</p>
+
+
+           
+            <!-- <div>
+                <a href="#" class="action">Edit team</a>
+                <a href="#" class="action">Join team</a>
+                <a href="#" class="action invert">Leave team</a>
+            </div> -->
+        </div>
+        <div class="pad-large">
+            <h3>Decription:</h3>
+            <p>{{car.description}}</p>
+        </div>
+        <div class="btns">
+            <ng-container *ngIf="isLoggedIn">
+            <ng-container *ngIf="isCreator">
+                <a href="#" class="action">Edit Car</a>
+                <a href="#" class="action">Delete Car</a>
+            </ng-container>
+            <ng-container *ngIf="!isCreator">
+                <a href="#" class="action">Save in favourites</a>
+            </ng-container>
+                
+            </ng-container>
+           
+        </div>
+    </article>
+</section>

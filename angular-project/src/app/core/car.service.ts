@@ -18,7 +18,9 @@ export class CarService {
   loadCarList(): Observable<ICar[]>{
     return this.http.get<ICar[]>(`${environment.apiUrl}/data/cars`)
   }
-
+  getCarById(id: string): Observable<ICar>{
+    return this.http.get<ICar>(`${environment.apiUrl}/data/cars/${id}`)
+  }
   postCar(car: {description: string
     hp: number
     imgUrl: string

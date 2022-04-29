@@ -7,6 +7,7 @@ import { CarListItemComponent } from './car-list-item/car-list-item.component';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AddCarPageComponent } from './add-car-page/add-car-page.component';
+import { CarDetailsPageComponent } from './car-details-page/car-details-page.component';
 
 
 @NgModule({
@@ -14,6 +15,7 @@ import { AddCarPageComponent } from './add-car-page/add-car-page.component';
     CarListComponent,
     CarListItemComponent,
     AddCarPageComponent,
+    CarDetailsPageComponent,
     
   ],
   imports: [
