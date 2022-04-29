@@ -26,7 +26,10 @@
                 <a href="javascript:void(0);" (click)="handleDelete()" class="action">Delete Car</a>
             </ng-container>
             <ng-container *ngIf="(!isCreator && !(isCarInFav | async))">
-                <a href="javascript:void(0);" (click)="handleAddInFavs()"class="action">Save in favourites</a>
+                <a href="javascript:void(0);" (click)="handleAddInFavs()"class="action">Add to favorites </a>
+            </ng-container>
+            <ng-container *ngIf="(!isCreator && !!(isCarInFav | async))">
+                <a href="javascript:void(0);" (click)="handleRemoveFromFav()"class="action">Remove from favorites </a>
             </ng-container>
                 
             

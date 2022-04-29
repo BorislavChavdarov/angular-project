@@ -67,5 +67,17 @@ this.user = JSON.parse(this.user) || {};
       }
     );
   }
+  handleRemoveFromFav(): void {
+    let favId = ""; 
+    this.favsService.getFavId(this.carId)
+    .subscribe(res => {
+      favId = res._id;
+      this.favsService.deleteFav(favId)
+      .subscribe(res => {
+        this.router.navigate(['/cars']);
+      })
+    })
+    
+  }
 
 }

@@ -6,7 +6,7 @@
 </div>
 
 <div *ngIf="carList">
-    <h1>Your Favourites:</h1>
+    <h1>Your Favorites :</h1>
     <div class="card-coulums">
     <app-car-list-item *ngFor="let car of carList" class="card" [car]="car"></app-car-list-item>
     </div>
