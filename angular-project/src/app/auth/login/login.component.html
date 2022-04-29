@@ -1,4 +1,8 @@
 <h3>Login</h3>
+<ng-container  *ngIf="error">
+  <h2 class="err-msg" *ngIf="error.status==403">Wrong email or password!</h2>
+  <h2 class="err-msg" *ngIf="error.status!=403">{{error.message}}</h2>
+</ng-container>
 
 
 <div>

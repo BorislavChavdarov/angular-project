@@ -12,7 +12,7 @@ import { IUser } from 'src/app/core/interfaces/user';
 })
 export class ProfileComponent implements OnInit {
   //favCarsIds!: Observable<string[]>;
-  carList:ICar[] = [];
+  carList!:ICar[];
   user!: IUser | any;
   constructor(private favsService: FavsService, private carService: CarService) { }
 
@@ -20,14 +20,20 @@ export class ProfileComponent implements OnInit {
     this.user = localStorage.getItem("currentUser");
     this.user = JSON.parse(this.user) || {};
     //console.log(this.isLoggedIn)
+    let cars:ICar[] = [];
      this.favsService.getUserFavs()
     .subscribe(res => {
       res.forEach( carId => {
         this.carService.getCarById(carId).subscribe(car => {
-          this.carList.push(car)
+        
+            
+         
+            cars.push(car)
+          
+          
         })
       });
-      
+      this.carList=cars;
       
     });
     

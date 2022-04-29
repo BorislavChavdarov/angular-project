@@ -21,7 +21,7 @@
 </ng-container>
 <ng-container>
     <p class="field field-icon">
-    <label for="model">Make</label>
+    <label for="model">Model</label>
     <input formControlName="model" type="text" name="model" id="model" placeholder="Car model...">
   </p>
    <ng-container *ngIf="addCarFormGroup.controls['model'].touched && addCarFormGroup.controls['model'].invalid">
@@ -30,7 +30,7 @@
   </p>
   
   <p  *ngIf="addCarFormGroup.controls['model'].errors!['minlength'] " class="alert alert-danger">
-    Car make must be atleast 3 chracters long!
+    Car model must be atleast 3 chracters long!
   </p>
   
   </ng-container> 

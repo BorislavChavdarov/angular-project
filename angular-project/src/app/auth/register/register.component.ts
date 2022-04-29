@@ -4,12 +4,14 @@ import { passwordMatch } from '../util';
 import { AuthService } from "../../auth.service"
 import { CreateUserDto } from 'src/app/core/user.service';
 import { Router } from '@angular/router';
+import { HttpErrorResponse } from '@angular/common/http';
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent implements OnInit {
+  error!:HttpErrorResponse | null;
 
   passwordControl = new FormControl(null, [Validators.required, Validators.minLength(4)]);
 
@@ -21,7 +23,7 @@ export class RegisterComponent implements OnInit {
     email: new FormControl(null, [Validators.required, Validators.email]),
     passwords: new FormGroup({
       password: this.passwordControl,
-      rePassword: new FormControl(null, [passwordMatch(this.passwordControl)]),
+      rePassword: new FormControl(null, [Validators.required, passwordMatch(this.passwordControl)]),
     })
     
   });
@@ -29,7 +31,7 @@ export class RegisterComponent implements OnInit {
   ngOnInit(): void {
   }
   handleRegister(): void {
- 
+    this.registerFormGroup.markAllAsTouched();
     if (this.registerFormGroup.valid) {
       const { email, passwords } = this.registerFormGroup.value;
       const body: CreateUserDto = {  
@@ -38,9 +40,18 @@ export class RegisterComponent implements OnInit {
       }
       console.log(this.registerFormGroup.value); 
       this.authService.register(body)
-      .subscribe((data) => {
-        this.router.navigate(['/home']);
-    })
+      .subscribe(
+        (data) => {
+          
+          this.router.navigate(['/home'])},
+        (err) => {
+          
+          this.error=err
+          setTimeout(() => {
+           this.error = null
+          }, 3000)
+        }
+      )
     
     
   }

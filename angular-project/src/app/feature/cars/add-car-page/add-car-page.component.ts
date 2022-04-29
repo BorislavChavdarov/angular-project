@@ -30,7 +30,7 @@ export class AddCarPageComponent implements OnInit {
   ngOnInit(): void {
   }
   submitNewCar(): void {
-
+    this.addCarFormGroup.markAllAsTouched();
     if (this.addCarFormGroup.valid) {
       this.carService.postCar(this.addCarFormGroup.value)
         .subscribe((res) => {

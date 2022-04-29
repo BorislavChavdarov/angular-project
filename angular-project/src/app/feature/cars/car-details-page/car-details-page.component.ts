@@ -53,14 +53,18 @@ this.user = JSON.parse(this.user) || {};
   }
 
   handleDelete(): void {
-    this.carService.deleteCar(this.carId)
-    .subscribe((res) => {
-      this.router.navigate(['/cars']);
-      }
-    );
+    if (confirm("Are you sure you want to delete this car?")) {
+      this.carService.deleteCar(this.carId)
+      .subscribe((res) => {
+        this.router.navigate(['/cars']);
+        }
+      );
+    }
+   
   }
 
   handleAddInFavs():void {
+
     this.favsService.addInFavs(this.carId)
     .subscribe((res) => {
       this.router.navigate(['/cars']);

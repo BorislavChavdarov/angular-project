@@ -1,23 +1,28 @@
 
+
 <div class="profile">
     <h1>Email: {{user.email}}</h1> 
     <h2>Registered on: {{user._createdOn | date:"short"}}</h2>
     <h2>id: {{user._id}}</h2>
 </div>
-
-<div *ngIf="carList">
+<div *ngIf="!!carList">
     <h1>Your Favorites :</h1>
     <div class="card-coulums">
     <app-car-list-item *ngFor="let car of carList" class="card" [car]="car"></app-car-list-item>
     </div>
-    <div *ngIf="carList.length ===0">
+    
+    <div *ngIf="carList.length === 0">
         No cars to show!
     </div>
 
 </div>
-
 <div *ngIf="!carList">
-    Loading...    
+    <div class="spinner-border" role="status">
+        <!-- <span class="sr-only">Loading...</span> -->
+      </div>  
 </div>
+
+
+
 
 

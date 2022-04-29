@@ -1,4 +1,9 @@
-<div *ngIf="carList">
+<div *ngIf="!carList" class="spinner-border" role="status">
+    <!-- <span class="sr-only">Loading...</span> -->
+  </div>
+<ng-container *ngIf="!!carList" >
+
+<div >
     <div class="card-coulums">
     <app-car-list-item *ngFor="let car of carList" class="card" [car]="car"></app-car-list-item>
     </div>
@@ -8,6 +13,4 @@
 
 </div>
 
-<div *ngIf="!carList">
-    Loading...    
-</div>
+</ng-container>

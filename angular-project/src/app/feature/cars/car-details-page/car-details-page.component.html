@@ -1,4 +1,10 @@
-<section *ngIf="!!car" id="team-home">
+
+<div *ngIf="!car" class="spinner-border" role="status">
+    <!-- <span class="sr-only">Loading...</span> -->
+  </div>
+<ng-container *ngIf="!!car" >
+
+<section  id="team-home">
     <article class="layout">
         <img [src]="car.imgUrl" class="team-logo left-col">
         <div class="tm-preview">
@@ -23,13 +29,13 @@
           
             <ng-container *ngIf="isCreator">
                 <a [routerLink]="['/cars/edit', car._id]" class="action">Edit Car</a>
-                <a href="javascript:void(0);" (click)="handleDelete()" class="action">Delete Car</a>
+                <a href="javascript:void(0);" (click)="handleDelete()" class="action red-btn">Delete Car</a>
             </ng-container>
             <ng-container *ngIf="(!isCreator && !(isCarInFav | async))">
                 <a href="javascript:void(0);" (click)="handleAddInFavs()"class="action">Add to favorites </a>
             </ng-container>
             <ng-container *ngIf="(!isCreator && !!(isCarInFav | async))">
-                <a href="javascript:void(0);" (click)="handleRemoveFromFav()"class="action">Remove from favorites </a>
+                <a href="javascript:void(0);" (click)="handleRemoveFromFav()" class="action red-btn">Remove from favorites </a>
             </ng-container>
                 
             
@@ -37,3 +43,4 @@
         </div>
     </article>
 </section>
+</ng-container>

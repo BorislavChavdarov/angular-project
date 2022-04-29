@@ -1,6 +1,9 @@
 <h3>Register</h3>
 
-
+<ng-container  *ngIf="error">
+  <h2 class="err-msg" *ngIf="error.status==409">This email has already been registered!</h2>
+  <h2 class="err-msg" *ngIf="error.status!=409">{{error.message}}</h2>
+</ng-container>
 <div>
   <form  [formGroup]="registerFormGroup" (ngSubmit)="handleRegister()">
     <p class="field field-icon">

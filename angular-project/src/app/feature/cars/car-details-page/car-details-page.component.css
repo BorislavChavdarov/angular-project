@@ -190,6 +190,6 @@ h2 {
    display: flex;
    justify-content: space-between;
 }
-.btns a {
-    
+.red-btn{
+    background-color: red;
 }
