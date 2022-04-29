@@ -3,16 +3,17 @@
   <a routerLink="cars">Cars</a>
 
   <!-- <a href="#contact">Contact</a> -->
-  <a routerLink="about-us">About</a>
+  
 
   <ng-container *ngIf="isLoggedIn | async">
     <a class="f-left" routerLink="cars/add-car">Add car</a>
+    <a class="f-left" routerLink="profile">My Profile</a>
     <a class="f-right" href="javascript:void(0);" (click)="logoutHandler()" >Logout</a>
   </ng-container>
   <ng-container *ngIf="!(isLoggedIn | async)">
     <a class="f-right" routerLink="login">Login</a>
     <a class="f-right" routerLink="register">Register</a>
   </ng-container>
-  
+  <a routerLink="about-us">About</a>
   
 </div>

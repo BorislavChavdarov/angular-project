@@ -1,0 +1,20 @@
+.profile{
+   text-align: center;
+   
+}
+.profile h1, h2 {
+    margin: 50px;
+}
+
+.card-coulums{
+    width: 70%;
+    margin-inline: auto;
+    margin-block: 30px;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+h1{
+    text-align: center;
+    margin-bottom: 50px;
+}

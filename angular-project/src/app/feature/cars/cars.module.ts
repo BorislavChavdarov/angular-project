@@ -28,6 +28,7 @@ import { CarEditComponent } from './car-edit/car-edit.component';
     ReactiveFormsModule
    
     
-  ]
+  ],
+  exports:[CarListItemComponent]
 })
 export class CarsModule { }

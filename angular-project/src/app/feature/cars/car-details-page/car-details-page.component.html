@@ -25,8 +25,8 @@
                 <a [routerLink]="['/cars/edit', car._id]" class="action">Edit Car</a>
                 <a href="javascript:void(0);" (click)="handleDelete()" class="action">Delete Car</a>
             </ng-container>
-            <ng-container *ngIf="!isCreator">
-                <a href="#" class="action">Save in favourites</a>
+            <ng-container *ngIf="(!isCreator && !(isCarInFav | async))">
+                <a href="javascript:void(0);" (click)="handleAddInFavs()"class="action">Save in favourites</a>
             </ng-container>
                 
             
