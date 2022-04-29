@@ -1,9 +1,9 @@
 # Angular project - cars
 ## Setup
-To install type:
-    npm install
+
 Next to start the backand server type
     cd server
+    npm install
     node server.js
 To start the application open new terminal(without closing the other one) and type:
     cd angular-project
