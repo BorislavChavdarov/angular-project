@@ -1234,7 +1234,8 @@
               hp:490,
               description: "description C8 Corvette",
               _createdOn: 1,
-              creator: "35c62d76-8152-4626-8712-eeb96381bea8"
+              _ownerId: "35c62d76-8152-4626-8712-eeb96381bea8",
+              savedBy: [],
             },
             "6546547657": {
                 make:"Tesla",
@@ -1245,7 +1246,8 @@
               hp:826,
               description: "description Tesla Model S",
               _createdOn: 2,
-              creator: "35c62d76-8152-4626-8712-eeb96381bea8"
+              _ownerId: "35c62d76-8152-4626-8712-eeb96381bea8",
+              savedBy: [],
             },
             "785646": {
                 make:"Honda",
@@ -1256,7 +1258,8 @@
               hp:158,
               description: "description Honda Civic",
               _createdOn: 3,
-              creator: "35c62d76-8152-4626-8712-eeb96381bea8"
+              _ownerId: "35c62d76-8152-4626-8712-eeb96381bea8",
+              savedBy: [],
             },
            
         },

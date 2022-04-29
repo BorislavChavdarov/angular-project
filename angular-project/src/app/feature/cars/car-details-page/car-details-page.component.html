@@ -1,4 +1,4 @@
-<section id="team-home">
+<section *ngIf="!!car" id="team-home">
     <article class="layout">
         <img [src]="car.imgUrl" class="team-logo left-col">
         <div class="tm-preview">
@@ -19,17 +19,17 @@
             <h3>Decription:</h3>
             <p>{{car.description}}</p>
         </div>
-        <div class="btns">
-            <ng-container *ngIf="isLoggedIn">
+        <div *ngIf="!!(isLoggedIn | async)" class="btns">
+          
             <ng-container *ngIf="isCreator">
-                <a href="#" class="action">Edit Car</a>
-                <a href="#" class="action">Delete Car</a>
+                <a [routerLink]="['/cars/edit', car._id]" class="action">Edit Car</a>
+                <a href="javascript:void(0);" (click)="handleDelete()" class="action">Delete Car</a>
             </ng-container>
             <ng-container *ngIf="!isCreator">
                 <a href="#" class="action">Save in favourites</a>
             </ng-container>
                 
-            </ng-container>
+            
            
         </div>
     </article>

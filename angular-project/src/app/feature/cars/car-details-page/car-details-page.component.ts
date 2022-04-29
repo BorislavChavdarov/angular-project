@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { AuthService } from 'src/app/auth.service';
 import { CarService } from 'src/app/core/car.service';
@@ -16,21 +16,31 @@ export class CarDetailsPageComponent implements OnInit {
   user!: IUser | any;
   isCreator!: boolean;
   isLoggedIn: Observable<boolean> = this.authService.isLoggedIn();
-  constructor(private activatedRoute: ActivatedRoute, private carService: CarService, private authService: AuthService) { }
+  carId!: string;
+  constructor(private activatedRoute: ActivatedRoute, private carService: CarService, private authService: AuthService, private router: Router) { }
 
   ngOnInit(): void {
     this.user = localStorage.getItem("currentUser");
-this.user = JSON.parse(this.user);
+this.user = JSON.parse(this.user) || {};
+console.log(this.isLoggedIn)
 
-console.log(this.user)
+
     this.activatedRoute.params.subscribe(params => {
-      const carId = params["carId"];
-      this.carService.getCarById(carId).subscribe(car =>{
+      this.carId = params["carId"];
+      this.carService.getCarById(this.carId).subscribe(car =>{
         this.car = car;
-        this.isCreator = car.creator == this.user._id
+        this.isCreator = car._ownerId == this.user!._id
       })
      
     })
+  }
+
+  handleDelete(): void {
+    this.carService.deleteCar(this.carId)
+    .subscribe((res) => {
+      this.router.navigate(['/cars']);
+      }
+    );
   }
 
 }

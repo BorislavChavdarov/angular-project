@@ -10,6 +10,6 @@ export interface ICar{
         description: string,
         _createdOn: number,
         _id: string,
-        creator:string
+        _ownerId:string,
     
 }
